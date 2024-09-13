@@ -24,6 +24,7 @@ public class CyclopsSucs : MonoBehaviour
     public AudioClip dinkleDinkle;
     public AudioClip whoopWhoop;
     public AudioClip dong;
+    public AudioClip errrrrr;
 
     // Update is called once per frame
     public void Tool0()
@@ -44,6 +45,7 @@ public class CyclopsSucs : MonoBehaviour
     public void Tool3()
     {
         tool = 3;
+        sound.clip = errrrrr;
     }
     public void Tool4()
     {

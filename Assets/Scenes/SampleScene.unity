@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fc61230c2a431f4492ed6ff0f01d936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 131766197858724659, guid: bd60cbcc6f859bc4da7f33d671c45f9a, type: 3}
+  prefab: {fileID: 2831638029154831333, guid: 21ae7458221c3184286d5494f1a6f6e3, type: 3}
   scoreText: {fileID: 253692623}
   wobbler: {fileID: 8199059817392349523}
   tool: 0
@@ -310,7 +310,7 @@ MonoBehaviour:
   sprongDoying: {fileID: 8300000, guid: b3b4585413f139340b2c9ec7df2c1ca3, type: 3}
   dinkleDinkle: {fileID: 8300000, guid: 1e175e368e071304681a53248a675e97, type: 3}
   whoopWhoop: {fileID: 8300000, guid: 77374d45a645ce847aa6ec7bc67b7208, type: 3}
-  dong: {fileID: 8300000, guid: db51740b05fdbab48b1f852eaca1c082, type: 3}
+  dong: {fileID: 8300000, guid: cbcec581ed0ee9748bbb2e9ebb2e97f5, type: 3}
 --- !u!1 &253692621
 GameObject:
   m_ObjectHideFlags: 0
