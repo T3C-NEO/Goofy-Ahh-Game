@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -22,39 +23,47 @@ public class CyclopsSucs : MonoBehaviour
     public AudioSource sound;
     public AudioClip sprongDoying;
     public AudioClip dinkleDinkle;
-    public AudioClip whoopWhoop;
     public AudioClip dong;
     public AudioClip errrrrr;
+    public AudioClip whaWha;
+
+    public AudioClip[] movin;
+
+    public wobble wob;
+
+    public Image icon;
+    public Sprite[] icons;
 
     // Update is called once per frame
     public void Tool0()
     {
         tool = 0;
-        sound.clip = whoopWhoop;
+        icon.sprite = icons[tool]; 
     }
     public void Tool1()
     {
         tool = 1;
-        sound.clip = sprongDoying;
+        icon.sprite = icons[tool];
     }
     public void Tool2()
     {
         tool = 2;
-        sound.clip = dinkleDinkle;
+        icon.sprite = icons[tool];
     }
     public void Tool3()
     {
         tool = 3;
-        sound.clip = errrrrr;
+        icon.sprite = icons[tool];
     }
     public void Tool4()
     {
         tool = 4;
-        sound.clip = dong;
+        icon.sprite = icons[tool];
     }
     public void Tool5()
     {
         tool = 5;
+        icon.sprite = icons[tool];
     }
     void Respawn()
     {
@@ -62,6 +71,11 @@ public class CyclopsSucs : MonoBehaviour
         wobbler.angularVelocity = new Vector3(0, 0, 0);
         wobbler.transform.rotation = new Quaternion(0, 0, 0, 0);
         wobbler.transform.position = new Vector3(UnityEngine.Random.Range(-8f, 8f), 4, UnityEngine.Random.Range(-8f, 8f));
+    }
+    void Update()
+    {
+
+        icon.transform.position = Input.mousePosition;
     }
     void FixedUpdate()
     {
@@ -89,23 +103,51 @@ public class CyclopsSucs : MonoBehaviour
                 {
                     if (tool == 0)
                     {
+                        if (!sound.isPlaying)
+                        {
+                            sound.clip = movin[UnityEngine.Random.Range(0, 2)];
+                        }
                         hit.rigidbody.AddExplosionForce(500, hit.point, 50f);
                     } else if (tool == 1)
                     {
+                        if (!sound.isPlaying)
+                        {
+                            sound.clip = sprongDoying;
+                        }
                         hit.rigidbody.AddExplosionForce(1000, wobbler.transform.position, 5f);
 
                     }
                     else if (tool == 2 && hit.rigidbody.tag == "Finish")
                     {
+                        if (!sound.isPlaying)
+                        {
+                            sound.clip = dinkleDinkle;
+                        }
                         Instantiate(prefab, hit.point, Quaternion.identity);
                     }
                     else if (tool == 3)
                     {
+                        if (!sound.isPlaying)
+                        {
+                            sound.clip = errrrrr;
+                        }
                         hit.rigidbody.AddExplosionForce(-200, hit.point, 5f);
                     }
                     else if (tool == 4 && hit.rigidbody.tag == "Finish")
                     {
+                        if (!sound.isPlaying)
+                        {
+                            sound.clip = dong;
+                        }
                         Respawn();
+                    }
+                    else if (!sound.isPlaying && tool == 5 && hit.rigidbody.tag == "Finish")
+                    {
+                        if (!sound.isPlaying)
+                        {
+                            sound.clip = whaWha;
+                        }
+                        wob.Switch();
                     }
                     if (!sound.isPlaying && hit.rigidbody.tag == "Finish")
                     {
