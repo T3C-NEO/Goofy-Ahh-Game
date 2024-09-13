@@ -72,13 +72,12 @@ public class CyclopsSucs : MonoBehaviour
         wobbler.transform.rotation = new Quaternion(0, 0, 0, 0);
         wobbler.transform.position = new Vector3(UnityEngine.Random.Range(-8f, 8f), 4, UnityEngine.Random.Range(-8f, 8f));
     }
-    void Update()
-    {
 
-        icon.transform.position = Input.mousePosition;
-    }
     void FixedUpdate()
     {
+
+        //icon.transform.position = Input.mousePosition;
+
         if (Math.Max(Math.Max(wobbler.velocity.x, wobbler.velocity.y), wobbler.velocity.z) > 2)
         {
             score += (int)Math.Max(Math.Max(wobbler.velocity.x, wobbler.velocity.y), wobbler.velocity.z);
@@ -95,65 +94,60 @@ public class CyclopsSucs : MonoBehaviour
         Ray beam = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit = new RaycastHit();
 
-        if (Physics.Raycast(beam, out hit))
+        if (Physics.Raycast(beam, out hit) && Input.GetMouseButton(0) && hit.rigidbody != null)
         {
-            if (Input.GetMouseButton(0))
+            if (tool == 0)
             {
-                if (hit.rigidbody != null)
+                if (!sound.isPlaying)
                 {
-                    if (tool == 0)
-                    {
-                        if (!sound.isPlaying)
-                        {
-                            sound.clip = movin[UnityEngine.Random.Range(0, 2)];
-                        }
-                        hit.rigidbody.AddExplosionForce(500, hit.point, 50f);
-                    } else if (tool == 1)
-                    {
-                        if (!sound.isPlaying)
-                        {
-                            sound.clip = sprongDoying;
-                        }
-                        hit.rigidbody.AddExplosionForce(1000, wobbler.transform.position, 5f);
-
-                    }
-                    else if (tool == 2 && hit.rigidbody.tag == "Finish")
-                    {
-                        if (!sound.isPlaying)
-                        {
-                            sound.clip = dinkleDinkle;
-                        }
-                        Instantiate(prefab, hit.point, Quaternion.identity);
-                    }
-                    else if (tool == 3)
-                    {
-                        if (!sound.isPlaying)
-                        {
-                            sound.clip = errrrrr;
-                        }
-                        hit.rigidbody.AddExplosionForce(-200, hit.point, 5f);
-                    }
-                    else if (tool == 4 && hit.rigidbody.tag == "Finish")
-                    {
-                        if (!sound.isPlaying)
-                        {
-                            sound.clip = dong;
-                        }
-                        Respawn();
-                    }
-                    else if (!sound.isPlaying && tool == 5 && hit.rigidbody.tag == "Finish")
-                    {
-                        if (!sound.isPlaying)
-                        {
-                            sound.clip = whaWha;
-                        }
-                        wob.Switch();
-                    }
-                    if (!sound.isPlaying && hit.rigidbody.tag == "Finish")
-                    {
-                        sound.Play();
-                    }
+                    sound.clip = movin[UnityEngine.Random.Range(0, 2)];
                 }
+                hit.rigidbody.AddExplosionForce(500, hit.point, 50f);
+            } else if (tool == 1)
+            {
+                if (!sound.isPlaying)
+                {
+                    sound.clip = sprongDoying;
+                }
+                hit.rigidbody.AddExplosionForce(1000, wobbler.transform.position, 5f);
+
+            }
+            else if (tool == 2 && hit.rigidbody.tag == "Finish")
+            {
+                if (!sound.isPlaying)
+                {
+                    sound.clip = dinkleDinkle;
+                }
+                Instantiate(prefab, hit.point, Quaternion.identity);
+            }
+            else if (tool == 3)
+            {
+                if (!sound.isPlaying)
+                {
+                    sound.clip = errrrrr;
+                }
+                hit.rigidbody.AddExplosionForce(-200, hit.point, 5f);
+            }
+            else if (tool == 4 && hit.rigidbody.tag == "Finish")
+            {
+                if (!sound.isPlaying)
+                {
+                    sound.clip = dong;
+                }
+                Respawn();
+            }
+            else if (!sound.isPlaying && tool == 5 && hit.rigidbody.tag == "Finish")
+            {
+                if (!sound.isPlaying)
+                {
+                    sound.clip = whaWha;
+                }
+                hit.rigidbody.AddExplosionForce(50, hit.point, 50f);
+                wob.Switch();
+            }
+            if (!sound.isPlaying && hit.rigidbody.tag == "Finish")
+            {
+                sound.Play();
             }
             
         }
