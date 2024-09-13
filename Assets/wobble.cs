@@ -32,6 +32,5 @@ public class wobble : MonoBehaviour
         {
             rb.angularVelocity += turnSpeedX;
         }
-        Debug.Log(rb.angularVelocity);
     }
 }
