@@ -76,7 +76,7 @@ public class CyclopsSucs : MonoBehaviour
     void FixedUpdate()
     {
 
-        //icon.transform.position = Input.mousePosition;
+        icon.transform.position = Input.mousePosition;
 
         if (Math.Max(Math.Max(wobbler.velocity.x, wobbler.velocity.y), wobbler.velocity.z) > 2)
         {
